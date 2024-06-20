@@ -186,7 +186,7 @@ async def main():
             # Creating the image.
             self.hangmanPicture = pygame.image.load(os.path.join('imageDirectory', 'hangman_pictures', str(self.hangmanPictureNum) + '.png')) # <= PYGAME/OS LIBRARY
             # Resizing the image, because too big by default.
-            self.hangmanPicture = pygame.transform.scale(self.hangmanPicture, (200, 200)) # <= PYGAME LIBRARY
+            self.hangmanPicture = pygame.transform.scale(self.hangmanPicture, (200 * factor, 200 * factor)) # <= PYGAME LIBRARY
             self.rect = self.hangmanPicture.get_rect()
             self.rect.x = x
             self.rect.y = y
