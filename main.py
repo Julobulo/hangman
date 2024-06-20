@@ -101,12 +101,12 @@ async def main():
             super(hint, self).__init__()
 
             # Select the size for the letters to adapt it to our needs.
-            self.hintFontSize = 40
+            self.hintFontSize = math.floor(40 * factor)
             self.hintFont = pygame.font.SysFont('Comic Sans MS', self.hintFontSize) # <= PYGAME LIBRARY
             self.hint = "Hint: " + hintGiven
             print(self.hint)
             self.hintText = self.hintFont.render(self.hint, False, (0, 0, 0))
-            self.hintPos = (x, y)
+            self.hintPos = (math.floor(x * factor), math.floor(y * factor))
         def display(self):
             screen.blit(self.hintText, self.hintPos) # <= PYGAME LIBRARY
 
