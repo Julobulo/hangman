@@ -106,7 +106,9 @@ async def main():
             self.hint = "Hint: " + hintGiven
             print(self.hint)
             self.hintText = self.hintFont.render(self.hint, False, (0, 0, 0))
-            self.hintPos = (math.floor(x * factor), math.floor(y * factor))
+            hint_rect = self.hintText.get_rect()
+            hint_x = ((screensize[0]/2 - hint_rect.width) / 2)
+            self.hintPos = (hint_x, math.floor(y * factor))
         def display(self):
             screen.blit(self.hintText, self.hintPos) # <= PYGAME LIBRARY
 
@@ -201,15 +203,15 @@ async def main():
             super(Menu, self).__init__()
             # Creating the image of play.
             self.playImg = pygame.image.load(os.path.join('imageDirectory', 'menu', 'play_button.png')) # <= PYGAME/OS LIBRARY
-            self.playButtonSizeX = 467
-            self.playButtonSizeY = 152
+            self.playButtonSizeX = math.floor(467 * factor)
+            self.playButtonSizeY = math.floor(152 * factor)
             self.playImg = pygame.transform.scale(self.playImg, (self.playButtonSizeX, self.playButtonSizeY)) # <= PYGAME LIBRARY
             self.posPlayImg = self.playImg.get_rect()
             self.posPlayImg.x = (screensize[0] / 2) - (self.playButtonSizeX / 2)
             self.posPlayImg.y = (screensize[1] / 2) - (self.playButtonSizeY / 2)
             # Adding a loading picture.
             self.loadingImg = pygame.image.load(os.path.join('imageDirectory', 'menu', 'loading.png')) # <= PYGAME/OS LIBRARY
-            self.loadingSize = 300
+            self.loadingSize = math.floor(300 * factor)
             self.loadingImg = pygame.transform.scale(self.loadingImg, (self.loadingSize, self.loadingSize)) # <= PYGAME LIBRARY
             self.posLoading = self.loadingImg.get_rect()
             self.posLoading.x = (screensize[0] / 2) - (self.loadingSize / 2)
