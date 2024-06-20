@@ -63,7 +63,7 @@ async def main():
     #     screensize = (800, 800)
     screensize = (640, 500)
     global factor
-    factor = (screensize[0]/1200) # it reduces or grows everything's size approximately depending on the screen size
+    factor = (screensize[0]/1400) # it reduces or grows everything's size approximately depending on the screen size
     
     # Set up the drawing window.
     screen = pygame.display.set_mode(screensize) # <= PYGAME LIBRARY
@@ -71,7 +71,7 @@ async def main():
 
     # Set up the size of the font for the letters.
     wordSize = 30
-    spaceBTWletters = wordSize * 0.93333
+    spaceBTWletters = wordSize * 0.93333 * factor
     pygame.font.init()
     wordToGuessFont = pygame.font.SysFont('Comic Sans MS', math.floor(wordSize))
 
@@ -79,10 +79,12 @@ async def main():
     class Letter(pygame.sprite.Sprite):
         def __init__(self, x, y: 50, index):
             super(Letter, self).__init__()
-            self.xPos = x - math.floor(100 * factor)
-            self.yPos = y - math.floor(100 * factor)
             self.letter = chosenWord[index].upper()
             self.letterText = wordToGuessFont.render(self.letter, False, (0, 0, 0))
+            letterA_rect = wordToGuessFont.render("a", False, (0, 0, 0)).get_rect()
+            letter_x = screensize[0]/4 - letterA_rect.width/2 - (letterA_rect.width + spaceBTWletters) * ( (len(chosenWord) - 1)/2 - index )
+            self.xPos = letter_x
+            self.yPos = y - math.floor(100 * factor)
             # Create a text of '_' to display.
             self.underscore = wordToGuessFont.render('_', False, (0, 0, 0))
             # Variable that will allows us to know if we need to display the letter or the underscore
