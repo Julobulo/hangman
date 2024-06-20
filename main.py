@@ -67,7 +67,7 @@ async def main():
     
     # Set up the drawing window.
     screen = pygame.display.set_mode(screensize) # <= PYGAME LIBRARY
-    pygame.display.set_caption("NOOOOOOO") # <= set screen/tab caption
+    pygame.display.set_caption("Hangman game made with pygame") # <= set screen/tab caption
 
     # Set up the size of the font for the letters.
     wordSize = 30
