@@ -73,14 +73,14 @@ async def main():
     wordSize = 30
     spaceBTWletters = wordSize * 0.93333
     pygame.font.init()
-    wordToGuessFont = pygame.font.SysFont('Comic Sans MS', wordSize)
+    wordToGuessFont = pygame.font.SysFont('Comic Sans MS', math.floor(wordSize))
 
     # Letter class, each letter on the screen is an object of this class
     class Letter(pygame.sprite.Sprite):
         def __init__(self, x, y: 50, index):
             super(Letter, self).__init__()
-            self.xPos = x
-            self.yPos = y
+            self.xPos = x - math.floor(100 * factor)
+            self.yPos = y - math.floor(100 * factor)
             self.letter = chosenWord[index].upper()
             self.letterText = wordToGuessFont.render(self.letter, False, (0, 0, 0))
             # Create a text of '_' to display.
