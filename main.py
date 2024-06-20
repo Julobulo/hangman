@@ -229,17 +229,23 @@ async def main():
                         reset()
         # Once the game is over, we want to show the word that we were looking for.
         def showWordWhenResetting(self, diedYesOrNo: bool):
-            self.wordFontSize = 50
+            self.wordFontSize = math.floor(50 * factor)
             if diedYesOrNo:
                 self.message = "The word was:"
             else:
                 self.message = "As you have guessed the word was:"
             # Show message (w/o word)
             self.messageHeading = pygame.font.SysFont('Comic Sans MS', self.wordFontSize).render(self.message, False, (0, 0, 0)) # <= PYGAME LIBRARY
-            screen.blit(self.messageHeading, ((screensize[0] / 2) - ((self.wordFontSize * len(self.message)) / 4), screensize[1] / 3)) # <= PYGAME LIBRARY
+            text_rect = self.messageHeading.get_rect()
+            # Calculate the position to center the text
+            text_x = (screensize[0] - text_rect.width) / 2
+            screen.blit(self.messageHeading, (text_x, screensize[1] / 3)) # <= PYGAME LIBRARY
             # Show word
             self.chosenWordDisplay = pygame.font.SysFont('Comic Sans MS', self.wordFontSize*2).render(chosenWord, False, (0, 0, 0)) # <= PYGAME LIBRARY
-            screen.blit(self.chosenWordDisplay, ((screensize[0] / 2) - ((self.wordFontSize * len(chosenWord)) / 2), (screensize[1] / 3) + (self.wordFontSize * 1.5)))
+            word_rect = self.chosenWordDisplay.get_rect()
+            # Calculate the position to center the text
+            word_x = (screensize[0] - word_rect.width) / 2
+            screen.blit(self.chosenWordDisplay, (word_x, (screensize[1] / 3) + (self.wordFontSize * 1.5)))
 
 
     # Choose a random word from our list of words.
