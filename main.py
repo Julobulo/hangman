@@ -192,7 +192,8 @@ async def main():
             # Resizing the image, because too big by default.
             self.hangmanPicture = pygame.transform.scale(self.hangmanPicture, (200 * factor, 200 * factor)) # <= PYGAME LIBRARY
             self.rect = self.hangmanPicture.get_rect()
-            self.rect.x = x
+            picture_x = screensize[0] - screensize[0]/4 - self.rect.width/2
+            self.rect.x = picture_x
             self.rect.y = y
         # Display the image.
         def display(self):
