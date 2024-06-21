@@ -62,7 +62,7 @@ async def main():
     #     print('You are on windows')
     # else:
     #     screensize = (800, 800)
-    screensize = (640, 500)
+    screensize = (740, 500)
     global factor
     factor = (screensize[0]/1400) # it reduces or grows everything's size approximately depending on the screen size
     
@@ -414,13 +414,6 @@ async def main():
             letterDict[letter].update(events)
             letterDict[letter].display(hasToDisplay)
 
-
-
-
-
-    screen = pygame.display.set_mode((640, 480))
-    pygame.display.set_caption("NOOOOOOO")
-    pygame.init()
 
     # Initiate the library.
     pygame.init() # <= PYGAME LIBRARY
