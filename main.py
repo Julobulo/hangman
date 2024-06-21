@@ -1,5 +1,6 @@
 import asyncio
 import math
+import datetime
 """
 First, I want the script to automatically choose a work, and display the number of chars a screen with a play background
 on the top left, the word that is going to be filled on the right, the hangman top right, user letter input (one place to put a letter).
@@ -252,7 +253,6 @@ async def main():
             word_x = (screensize[0] - word_rect.width) / 2
             screen.blit(self.chosenWordDisplay, (word_x, (screensize[1] / 3) + (self.wordFontSize * 1.5)))
 
-
     # Choose a random word from our list of words.
     def chooseWord():
         # Put every word of the file into a list.
@@ -261,11 +261,13 @@ async def main():
             for line in listOfWordsHangman:
                 listOfWordsHangman[listOfWordsHangman.index(line)] = line.strip()
         # Randomly choose an index in the range of the list of words.
-        randomIndex = randint(0, len(listOfWordsHangman) - 1)
+        # randomIndex = randint(0, len(listOfWordsHangman) - 1)
+        randomIndex = int(datetime.datetime.utcnow().timestamp()) % (len(listOfWordsHangman) - 1)
         wordToReturn = listOfWordsHangman[randomIndex]
         while "////" in wordToReturn or ":" in wordToReturn:
             randomIndex = randint(0, len(listOfWordsHangman) - 1)
             wordToReturn = listOfWordsHangman[randomIndex]
+        print(f'Chosen word: {wordToReturn}')
         i = randomIndex
         # Go up until we find the top of the category.
         while "////" not in listOfWordsHangman[i]:
