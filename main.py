@@ -62,7 +62,7 @@ async def main():
     #     print('You are on windows')
     # else:
     #     screensize = (800, 800)
-    screensize = (740, 500)
+    screensize = (1040, 500)
     global factor
     factor = (screensize[0]/1400) # it reduces or grows everything's size approximately depending on the screen size
     
